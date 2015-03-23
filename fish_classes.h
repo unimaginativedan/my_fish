@@ -6,8 +6,7 @@ class fish {
   // Base class that defines all fish.
  public:
   int x, y, z;
-  int age, eaten;
-    
+     
   void init(){
     // Function to initialise fish position, age and status.
     age = 0;
@@ -31,7 +30,10 @@ class fish {
 class minnow: public fish{
   // Derived class that defines minnows, specifically how they move.
  public:
+  
+
   void move(){
+    
     x=(x+((rand()%3)-1))%5;
     y=(y+((rand()%3)-1))%5;
     z=(z+((rand()%3)-1))%5;
@@ -40,9 +42,12 @@ class minnow: public fish{
 
 class tuna: public fish{
  public:
+  // If a shark moves 5 times without eating it dies.
+  int age, eaten;
   // Derived class that defines tuna, specifically how they move.
   void move(){
-   
+    
+    age++;
     // Choose which diagonal plane to move in.
     int diag;
     diag=rand()%3;
@@ -72,9 +77,14 @@ class tuna: public fish{
 
 class shark: public fish{
  public:
+  // If a shark moves 5 times without eating it dies.
+  int age, eaten;
+  
   // Derived class that defines sharks, specifically how they move.
   void move(){
    
+    age++;
+    
     // Choose which plane to move in.
     int diag;
     diag=rand()%3;
