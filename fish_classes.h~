@@ -1,0 +1,9 @@
+class fish {
+ public:
+  // Three different types: Minnow(0), Tuna(1) & Shark(2).
+  int type;
+  // Position of the fish.
+  int x, y, z;
+  // Age and whether it has eaten or not.
+  int age, eaten;
+}
