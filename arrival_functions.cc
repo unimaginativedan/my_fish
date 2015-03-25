@@ -110,7 +110,7 @@ void two_tuna(tuna* head){
     xcoord=root->x;
     ycoord=root->y;
     zcoord=root->z;
-    //    
+   
     search=root;
   
     // Variable to count the number of tuna in common at a site.
@@ -121,8 +121,7 @@ void two_tuna(tuna* head){
       num_fed_tuna=0;
    
     // Ensuring that no double counting.
-    //root->found=1;
-     
+       
     while(search!=NULL){
       cout<< search->found << endl;
       if(search->x==xcoord && search->y==ycoord && search->z==zcoord && search->found!=1){

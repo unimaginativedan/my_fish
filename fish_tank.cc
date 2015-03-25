@@ -16,11 +16,13 @@ void two_shark(shark* head);
 int main() {
   
   srand(time(NULL));
-  shark m1;
-  m1.init();
+  tuna t1;
+  t1.init();
   
-  append_shark(&m1);
-  shark *root;
+  minnow m1;
+  m1.init();
+
+  tuna *root;
   root = &m1;
   while(root->next!=NULL){
     root->found=0;
@@ -28,10 +30,10 @@ int main() {
     root=root->next;
    
   }
-  two_shark(&m1);
+  two_tuna(&m1);
   root=&m1;
   while(root->next!=NULL){
-    cout<<"Init shark position: "<< root->x << " " << root->y << "  " << root->z << endl;
+    cout<<"Init tuna position: "<< root->x << " " << root->y << "  " << root->z << endl;
     root=root->next;
     // for(int i=0;i<5;i++)
     //  root->move();
