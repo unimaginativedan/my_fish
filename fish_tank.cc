@@ -7,14 +7,20 @@ using namespace std;
 void append_minnows(minnow* head);
 void two_minnows(minnow* head);
 
+void append_tuna(tuna* head);
+void two_tuna(tuna* head);
+
+void append_shark(shark* head);
+void two_shark(shark* head);
+
 int main() {
   
   srand(time(NULL));
-  minnow m1;
+  shark m1;
   m1.init();
   
-  append_minnows(&m1);
-  minnow *root;
+  append_shark(&m1);
+  shark *root;
   root = &m1;
   while(root->next!=NULL){
     root->found=0;
@@ -22,10 +28,10 @@ int main() {
     root=root->next;
    
   }
-  two_minnows(&m1);
+  two_shark(&m1);
   root=&m1;
   while(root->next!=NULL){
-    cout<<"Init minnow position: "<< root->x << " " << root->y << "  " << root->z << endl;
+    cout<<"Init shark position: "<< root->x << " " << root->y << "  " << root->z << endl;
     root=root->next;
     // for(int i=0;i<5;i++)
     //  root->move();

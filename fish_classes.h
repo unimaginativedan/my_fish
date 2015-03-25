@@ -60,8 +60,19 @@ class minnow: public fish{
 
 class tuna: public fish{
  public:
-  // If a shark moves 5 times without eating it dies.
+  tuna *next;
   int age, eaten;
+  void init(){
+    // Function to initialise fish position, age and status.
+    found=0;
+    age=0;
+    eaten=1;
+  
+    x=rand()%5;
+    y=rand()%5;
+    z=rand()%5;
+    next=NULL;
+  }
   // Derived class that defines tuna, specifically how they move.
   void move(){
     
@@ -97,7 +108,18 @@ class shark: public fish{
  public:
   // If a shark moves 5 times without eating it dies.
   int age, eaten;
+  shark *next;
+   void init(){
+    // Function to initialise fish position, age and status.
+    found=0;
+    age=0;
+    eaten=1;
   
+    x=rand()%5;
+    y=rand()%5;
+    z=rand()%5;
+    next=NULL;
+  }
   // Derived class that defines sharks, specifically how they move.
   void move(){
    
