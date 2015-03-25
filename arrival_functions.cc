@@ -2,13 +2,14 @@
 #include <cstdlib>
 
 
-void append_fishs(fish* head){
+void append_minnows(minnow* head){
   
   while(head->next!=NULL){
     head=head->next;
   }
+  
   for(int i=0;i<3;i++){
-    head->next = new fish;
+    head->next = new minnow;
     (head->next)->init();
     (head->next)->x=head->x;
     (head->next)->y=head->y;
@@ -19,39 +20,49 @@ void append_fishs(fish* head){
 
 }
 
-void two_fishs(fish* head){
+void two_minnows(minnow* head){
   
-  fish* root = head;
-  fish *search;
-  int xcoord, ycoord, zcoord, num_fishs;
+  minnow* root = head;
+  minnow *search;
+  int xcoord, ycoord, zcoord, num_minnows;
   while(root!=NULL){
-    // Run through list of fishs to see if there are two at any given site.
+    // Run through list of minnows to see if there are two at any given site.
+    cout<< "In list search" <<endl;
     xcoord=root->x;
     ycoord=root->y;
     zcoord=root->z;
     search=root;
-    // Variable to count the number of fishs in common at a site.
-    num_fishs=0;
+    // Variable to count the number of minnows in common at a site.
+    num_minnows=0;
     // Ensuring that
     root->found=1;
     while(search!=NULL){
-      if(search->x==xcoord && search->y==ycoord && search->z==zcoord && search->found==0){
-	// If statement ensures that fishs at common sites are found
+      if(search->x==xcoord && search->y==ycoord && search->z==zcoord && search->found!=1){
+	// If statement ensures that minnows at common sites are found
 	// and that no double counting occurs.
+	cout<<"Minnows matching"<<endl;
 	search->found=1;
-	num_fishs++;
+	num_minnows++;
       }	
+      cout<<"Setting up next search"<<endl;
       search=search->next;
     }
-    if(num_fishs>=2)
-      append_fishs(head);
-    
-    root=root->next;
-    while(root->found==1){
-      // Making sure not to check sites already accounted for.
-      root=root->next;
+    cout<<"Out of first search"<<endl;
+    if(num_minnows>=2){
+      cout<<"Calling append"<<endl;
+      append_minnows(head);
     }
+    root=root->next;
+    cout<<"After new root"<<endl;
+    while( root!=NULL && root->found==1){
+      // Making sure not to check sites already accounted for.
+      cout<<"Checking next root"<<endl;
+      root=root->next;
+      cout<<"After next"<<endl;
+    }
+    cout<<"Last line in bigwhile"<<endl;
   }
+  cout<<"Out of root"<< endl;
   while(head!=NULL){
     head->found=0;
     head=head->next;

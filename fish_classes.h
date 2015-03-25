@@ -10,10 +10,11 @@ class fish {
   int age, eaten;
   int found;  // Property used when searching through tank for move/breed/feed.
   
-  fish *next;
   
   
   
+  /*
+
   void init(){
     // Function to initialise fish position, age and status.
     found=0;
@@ -22,9 +23,9 @@ class fish {
     x=rand()%5;
     y=rand()%5;
     z=rand()%5;
-    next=NULL;
+   
   }
-  
+  */
   void position_plusminus( int &k){
     // Used in many move functions useful to have.
     if(rand()%2)
@@ -38,13 +39,22 @@ class fish {
 class minnow: public fish{
   // Derived class that defines minnows, specifically how they move.
  public:
- 
+ minnow *next;
 
+  void init(){
+    // Function to initialise fish position, age and status.
+    found=0;
+      
+    x=rand()%5;
+    y=rand()%5;
+    z=rand()%5;
+    next=NULL;
+  }
   void move(){
     
-    x=(x+((rand()%3)-1))%5;
-    y=(y+((rand()%3)-1))%5;
-    z=(z+((rand()%3)-1))%5;
+    x=(x+((rand()%3)+4))%5;
+    y=(y+((rand()%3)+4))%5;
+    z=(z+((rand()%3)+4))%5;
   }
 };
 
