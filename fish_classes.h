@@ -41,6 +41,7 @@ class minnow: public fish{
  public:
  minnow *next;
 
+ // ~minnow() = delete;
   void init(){
     // Function to initialise fish position, age and status.
     found=0;

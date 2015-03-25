@@ -13,17 +13,32 @@ void two_tuna(tuna* head);
 void append_shark(shark* head);
 void two_shark(shark* head);
 
+void tuna_eating(tuna* pred, minnow* prey);
+void shark_eating(shark* pred, tuna* prey);
+
 int main() {
   
   srand(time(NULL));
   tuna t1;
   t1.init();
   
-  minnow m1;
+  shark m1;
   m1.init();
+  m1.x=1;
+  m1.y=1;
+  m1.z=1;
+  tuna *prey;
+  shark *pred;
+  prey=&t1;
 
-  tuna *root;
-  root = &m1;
+ 
+  pred = &m1;
+  t1.x=1;
+  t1.y=1;
+  t1.z=1;
+
+  shark_eating(pred,prey);
+  /*
   while(root->next!=NULL){
     root->found=0;
     cout<<root->found<<endl;
@@ -39,7 +54,7 @@ int main() {
     //  root->move();
   }
     
-  
+  */
   cout<<"Init minnow position: "<< m1.x << " " << m1.y << "  " << m1.z << endl;
   /*
   m1.move();
