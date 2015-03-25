@@ -2,13 +2,13 @@
 #include <cstdlib>
 
 
-void append_minnows(minnow* head){
+void append_fishs(fish* head){
   
   while(head->next!=NULL){
     head=head->next;
   }
   for(int i=0;i<3;i++){
-    minnow* head->next = new minnow;
+    head->next = new fish;
     (head->next)->init();
     (head->next)->x=head->x;
     (head->next)->y=head->y;
@@ -19,32 +19,32 @@ void append_minnows(minnow* head){
 
 }
 
-fish* two_minnows(minnow* head){
+void two_fishs(fish* head){
   
-  minnow* root = head;
-  minnow *search;
-  int xcoord, ycoord, zcoord, num_minnows;
+  fish* root = head;
+  fish *search;
+  int xcoord, ycoord, zcoord, num_fishs;
   while(root!=NULL){
-    // Run through list of minnows to see if there are two at any given site.
+    // Run through list of fishs to see if there are two at any given site.
     xcoord=root->x;
     ycoord=root->y;
     zcoord=root->z;
     search=root;
-    // Variable to count the number of minnows in common at a site.
-    num_minnows=0;
+    // Variable to count the number of fishs in common at a site.
+    num_fishs=0;
     // Ensuring that
     root->found=1;
     while(search!=NULL){
       if(search->x==xcoord && search->y==ycoord && search->z==zcoord && search->found==0){
-	// If statement ensures that minnows at common sites are found
+	// If statement ensures that fishs at common sites are found
 	// and that no double counting occurs.
 	search->found=1;
-	num_minnows++;
+	num_fishs++;
       }	
       search=search->next;
     }
-    if(num_minnows>=2)
-      append_minnows(head);
+    if(num_fishs>=2)
+      append_fishs(head);
     
     root=root->next;
     while(root->found==1){
