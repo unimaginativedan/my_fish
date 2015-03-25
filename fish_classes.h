@@ -6,15 +6,22 @@ class fish {
   // Base class that defines all fish.
  public:
   int x, y, z;
-     
+  int age, eaten;
+  int found;  // Property used when searching through tank for move/breed/feed.
+  
+  fish *next;
+  
+  
+  
   void init(){
     // Function to initialise fish position, age and status.
-    age = 0;
+    found=0;
+    age=0;
     eaten=0;
-   
     x=rand()%5;
     y=rand()%5;
     z=rand()%5;
+    next=NULL;
   }
   
   void position_plusminus( int &k){
@@ -30,7 +37,7 @@ class fish {
 class minnow: public fish{
   // Derived class that defines minnows, specifically how they move.
  public:
-  
+ 
 
   void move(){
     
@@ -116,11 +123,11 @@ class shark: public fish{
       position_plusminus(i);
       break;
     case 2:
-      j=(j-2)%5;
+      j=(j+3)%5;
       position_plusminus(i);
       break;
     case 3:
-      i=(i-2)%5;
+      i=(i+3)%5;
       position_plusminus(j);
       break;
     default:
