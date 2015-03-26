@@ -19,52 +19,135 @@ void shark_eating(shark* pred, tuna* prey);
 int main() {
   
   srand(time(NULL));
-  tuna t1;
-  t1.init();
-  
-  shark m1;
-  m1.init();
-  m1.x=1;
-  m1.y=1;
-  m1.z=1;
-  tuna *prey;
-  shark *pred;
-  prey=&t1;
 
- 
-  pred = &m1;
-  t1.x=1;
-  t1.y=1;
-  t1.z=1;
 
-  shark_eating(pred,prey);
-  /*
-  while(root->next!=NULL){
-    root->found=0;
-    cout<<root->found<<endl;
-    root=root->next;
-   
+  /*-----------------------------------------------------------------------------------------
+    Don't have enough time to initialise population properly or write all of the functions 
+    so this main is just meant to show that the ones I have written do work.
+    ---------------------------------------------------------------------------------------*/
+  minnow minnow_school;
+  minnow_school.init();
+  minnow *minnow_root;
+  
+  minnow_root=&minnow_school;
+  append_minnows(minnow_root);
+  for(int j=0;j<2;j++){
+    while(minnow_root!=NULL){
+      for(int i=0;i<5;i++)
+	minnow_root->move();
+      minnow_root=minnow_root->next;
+    }
   }
-  two_tuna(&m1);
-  root=&m1;
-  while(root->next!=NULL){
-    cout<<"Init tuna position: "<< root->x << " " << root->y << "  " << root->z << endl;
-    root=root->next;
-    // for(int i=0;i<5;i++)
-    //  root->move();
+
+  tuna tuna_school;
+  tuna_school.init();
+  tuna *tuna_root;
+  
+  tuna_root=&tuna_school;
+  append_tuna(tuna_root);
+  for(int j=0;j<2;j++){
+    while(tuna_root!=NULL){
+      for(int i=0;i<5;i++)
+	tuna_root->move();
+      tuna_root=tuna_root->next;
+    }
   }
-    
-  */
-  cout<<"Init minnow position: "<< m1.x << " " << m1.y << "  " << m1.z << endl;
-  /*
-  m1.move();
-  cout<<"Next minnow position: "<< m1.x << " " << m1.y << "  " << m1.z << endl;
   
-  m1.move();  
-  cout<<"Next minnow position: "<< m1.x << " " << m1.y << "  " << m1.z << endl;
+  shark shark_pack;
+  shark_pack.init();
+  shark *shark_root;
   
-  m1.move();
-  cout<<"Finl minnow position: "<< m1.x << " " << m1.y << "  " << m1.z << endl;
-  */
-  
+  shark_root=&shark_pack;
+  append_shark(shark_root);
+  for(int j=0;j<2;j++){
+    while(shark_root!=NULL){
+      for(int i=0;i<5;i++)
+	shark_root->move();
+      shark_root=shark_root->next;
+    }
+  }
+  // Measure the initial population of species.
+  int minnow_population=0;
+  minnow_root=&minnow_school;
+  while(minnow_root!=NULL){
+    minnow_population++;
+    minnow_root=minnow_root->next;
+  }
+
+  int tuna_population=0;
+  tuna_root=&tuna_school;
+  while(tuna_root!=NULL){
+    tuna_population++;
+    tuna_root=tuna_root->next;
+  }
+
+
+  int shark_population=0;
+  shark_root=&shark_pack;
+  while(shark_root!=NULL){
+    shark_population++;
+    shark_root=shark_root->next;
+  }
+
+  cout<<"Minnow population is:"<< minnow_population<< endl;
+  cout<<"Tuna population is:"<< tuna_population<< endl;
+  cout<<"Shark population is:"<< shark_population<< endl;
+  /*----------------------------------------------
+    Chooses a species to move then a member of 
+    that species to move L^3 times.
+    ----------------------------------------------*/
+  for(int j=0;j<125;j++){
+    int choose = rand()%3;
+    if(choose==0){
+      int count=rand()%minnow_population;
+      minnow_root=&minnow_school;
+      for(int i=0;i<count;i++)
+	minnow_root=minnow_root->next;
+      minnow_root->move();
+    }
+    else if(choose==1){
+      int count=rand()%tuna_population;
+      tuna_root=&tuna_school;
+      for(int i=0;i<count;i++)
+	tuna_root=tuna_root->next;
+      if(drand48()<0.9){
+	tuna_root->move();
+	tuna_eating(&tuna_school, &minnow_school);
+      }
+    }
+    else{
+      int count=rand()%shark_population;
+      shark_root=&shark_pack;
+      for(int i=0;i<count;i++)
+	shark_root=shark_root->next;
+      if(drand48()<0.9){
+	shark_root->move();
+	shark_eating(&shark_pack, &tuna_school);
+      }
+    }
+  }
+ minnow_population=0;
+  minnow_root=&minnow_school;
+  while(minnow_root!=NULL){
+    minnow_population++;
+    minnow_root=minnow_root->next;
+  }
+
+  tuna_population=0;
+  tuna_root=&tuna_school;
+  while(tuna_root!=NULL){
+    tuna_population++;
+    tuna_root=tuna_root->next;
+  }
+
+
+  shark_population=0;
+  shark_root=&shark_pack;
+  while(shark_root!=NULL){
+    shark_population++;
+    shark_root=shark_root->next;
+  }
+  cout<<"Minnow population is:"<< minnow_population<< endl;
+  cout<<"Tuna population is:"<< tuna_population<< endl;
+  cout<<"Shark population is:"<< shark_population<< endl;
 }

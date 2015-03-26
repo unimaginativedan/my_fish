@@ -22,7 +22,7 @@ minnow* minnow_getting_eaten(tuna* pred, minnow* dead_fish, int xcoord, int ycoo
 
 void tuna_eating(tuna* predator, minnow* prey){
   int xcoord, ycoord, zcoord;
-  cout<<"In tuna eating"<<endl;
+  
   
   tuna* pred = predator;
   
@@ -41,7 +41,7 @@ void tuna_eating(tuna* predator, minnow* prey){
 }
 
 tuna* tuna_getting_eaten(shark* pred, tuna* dead_fish, int xcoord, int ycoord, int zcoord){
-  cout<<"In tuna getting eaten"<<endl;
+  
   tuna* temp;
   
   if(dead_fish==NULL)
